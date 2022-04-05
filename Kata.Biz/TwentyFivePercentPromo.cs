@@ -1,9 +1,11 @@
 ﻿
+using System.Collections.ObjectModel;
+
 namespace Kata.Biz
 {
     public class TwentyFivePercentPromo : IPromotion
     {
-        public decimal Apply(List<Item> items)
+        public decimal Apply(ReadOnlyCollection<Item> items)
         {
             var itemsForDiscount = items.Where(items => items.SKU == 'D');
             int numberOfItems = itemsForDiscount.Count() / 2;

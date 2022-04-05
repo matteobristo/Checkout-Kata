@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.ObjectModel;
+
 namespace Kata.Biz
 {
     public class PromotionsProcessor : IPromotionsProcessor
@@ -10,7 +12,7 @@ namespace Kata.Biz
             this._promotions = promotions;
         }
 
-        public void ApplyPromotions(List<Item> items, Action<decimal> applyCallBack)
+        public void ApplyPromotions(ReadOnlyCollection<Item> items, Action<decimal> applyCallBack)
         {
             foreach (IPromotion promotion in _promotions)
             {

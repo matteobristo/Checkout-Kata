@@ -26,7 +26,7 @@
                 Total += item.UnitPrice;
             }
 
-            this._promotionsProcessor.ApplyPromotions(this.CartItems, this.ApplyDiscountToTotal);
+            this._promotionsProcessor.ApplyPromotions(this.CartItems.AsReadOnly(), this.ApplyDiscountToTotal);
         }
 
         private void ApplyDiscountToTotal(decimal amount)

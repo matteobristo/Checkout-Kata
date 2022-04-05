@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Kata.Biz
+﻿namespace Kata.Biz
 {
     public class Cart
     {
@@ -32,7 +26,7 @@ namespace Kata.Biz
                 Total += item.UnitPrice;
             }
 
-            this._promotionsProcessor?.ApplyPromotions(this.CartItems, this.ApplyDiscountToTotal);
+            this._promotionsProcessor.ApplyPromotions(this.CartItems, this.ApplyDiscountToTotal);
         }
 
         private void ApplyDiscountToTotal(decimal amount)

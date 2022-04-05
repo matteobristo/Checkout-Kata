@@ -10,6 +10,12 @@ namespace Kata.Biz
     {
         public List<Item> CartItems { get; private set; } = new List<Item>();
         public decimal Total { get; private set; } = 0M;
+        private readonly IPromotionsProcessor _promotionsProcessor;
+
+        public Cart(IPromotionsProcessor promosProcessor)
+        {
+            this._promotionsProcessor = promosProcessor;
+        }
 
         public void AddToCart(Item item)
         {
@@ -25,6 +31,13 @@ namespace Kata.Biz
             {
                 Total += item.UnitPrice;
             }
+
+            this._promotionsProcessor?.ApplyPromotions(this.CartItems, this.ApplyDiscountToTotal);
+        }
+
+        private void ApplyDiscountToTotal(decimal amount)
+        {
+            this.Total -= amount;
         }
     }
 }

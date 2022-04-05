@@ -1,16 +1,21 @@
 using Kata.Biz;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Kata.Tests
 {
     public class AddItemsToBasketTests
     {
+        private Cart cart;
+
+        public AddItemsToBasketTests()
+        {
+            cart = new Cart(new PromotionsProcessor(new List<IPromotion>()));
+        }
 
         [Fact]
         public void TestForEmptyCart()
         {
-            var cart = new Cart();
-
             Assert.True(cart.CartItems.Count == 0);
         }
 
@@ -19,8 +24,7 @@ namespace Kata.Tests
         public void AddSingleItemToCart()
         {
             Item item = new Item('A', 10);
-            var cart = new Cart();
-
+            
             cart.AddToCart(item);
 
             Assert.All(cart.CartItems, item => Assert.Contains(item.SKU, "A"));
@@ -32,8 +36,7 @@ namespace Kata.Tests
         {
             Item itemA = new Item('A', 10);
             Item itemB = new Item('B', 15);
-            var cart = new Cart();
-
+            
             cart.AddToCart(itemA);
             cart.AddToCart(itemB);
 
